@@ -26,6 +26,40 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
   late double width;
   late double height;
 
+  List<String> productNameList=[
+    'Facial Cleanser',
+    'Faiza Beauty Cream',
+    'Serum',
+    'Scrub'
+  ];
+
+  List<String> productPriceList=[
+    '19.98',
+    '3.78',
+    '15.45',
+    '7.09'
+  ];
+  List<String> productSizeList=[
+    'Size 8.78 fz ol /225ml',
+    'Size 7.60 fz ol /250ml',
+    'Size 4.34 fz ol /50ml',
+    'Size 6.23 fz ol /500ml'
+  ];
+
+  List<String> productImageList=[
+    'assets/images/facial_product.png',
+    'assets/images/facial_product.png',
+    'assets/images/facial_product.png',
+    'assets/images/shirt.png'
+  ];
+
+  List<int> productCartCountList = [
+    1,
+    1,
+    1,
+    1
+  ];
+
 
 
   @override
@@ -101,7 +135,7 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                 width: width,
                 margin: EdgeInsets.only(top: height*0.025),
                 child: ListView.builder(
-                  itemCount: 6,
+                  itemCount: productNameList.length,
                   itemBuilder: (BuildContext context, index){
                     return Container(
                       margin: EdgeInsets.only(left: width*0.05,top: height*0.03),
@@ -119,7 +153,7 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                               child: Container(
                                 padding: EdgeInsets.all(width*0.015),
                                 child: Image.asset(
-                                  'assets/images/facial_product.png',
+                                  productImageList[index],
                                 ),
                               ),
                             ),
@@ -133,7 +167,7 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                               children: [
                                 Container(
                                   child: Text(
-                                    'Facial Cleanser',
+                                    productNameList[index],
                                     style: TextStyle(
                                         fontFamily: 'poppins',
                                         fontWeight: FontWeight.w600,
@@ -143,7 +177,7 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                                 ),
                                 Container(
                                   child: Text(
-                                    'Size: 7.60 fl oz /225ml',
+                                    productSizeList[index],
                                     style: TextStyle(
                                         color: Colors.grey.shade500,
                                         fontFamily: 'poppins',
@@ -154,7 +188,7 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                                 ),
                                 Container(
                                   child:Text(
-                                    '\$16.89',
+                                    '\$'+productPriceList[index],
                                     style: TextStyle(
                                         fontFamily: 'poppins',
                                         fontWeight: FontWeight.w600,
@@ -171,6 +205,13 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                               children: [
                                 InkWell(
                                   onTap: (){
+
+                                    if(productCartCountList[index]>1){
+
+                                      setState((){
+                                        productCartCountList[index]--;
+                                      });
+                                    }
 
                                   },
                                   child: Container(
@@ -192,7 +233,7 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                                 Container(
                                   margin: EdgeInsets.symmetric(horizontal: width*0.02),
                                   child: Text(
-                                    '1',
+                                    productCartCountList[index].toString(),
                                     style: TextStyle(
                                       fontFamily: 'poppins',
                                       fontWeight: FontWeight.w500,
@@ -203,6 +244,10 @@ class _ShoppingCartSTFState extends State<ShoppingCartSTF> {
                                 InkWell(
                                   onTap: (){
 
+
+                                    setState((){
+                                      productCartCountList[index]++;
+                                    });
                                   },
                                   child: Container(
                                     width: width*0.085,
