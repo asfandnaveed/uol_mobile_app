@@ -16,3 +16,6 @@ For help getting started with Flutter development, view the
 samples, guidance on mobile development, and a full API reference.
 
 https://dribbble.com/shots/15440114-Beauty-Product-Shop-App
+
+## GENERATE SHA-1 KEY
+keytool -list -v -keystore "%USERPROFILE%.android\debug.keystore" -alias androiddebugkey -storepass android -keypass android
